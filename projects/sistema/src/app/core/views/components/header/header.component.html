@@ -1,0 +1,21 @@
+<mat-toolbar>
+    <button mat-icon-button color="primary" (click)="toogleMenu()">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <button mat-button class="profile" [matMenuTriggerFor]="menuVertical">
+        <img src="assets/img/avatar/user.png" alt=""/>
+        <span>{{username}}</span>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menuVertical>
+        <button mat-menu-item>
+            <mat-icon>lock</mat-icon>
+            <span>Bloquear Session</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar Session</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>

@@ -1,0 +1,20 @@
+<amb-title>
+    <button mat-flat-button color="primary" btnAction>
+        <mat-icon>add</mat-icon>
+        Add Medic
+    </button>
+</amb-title>
+<amb-container>
+    <!-- <button mat-button color="primary" (click)="toggleID('id')">id</button>
+    <button mat-button color="primary" (click)="toggleID('name')">name</button>
+    <button mat-button color="primary" (click)="toggleID('lastname')">lastname</button>-->
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Search</mat-label>
+            <input matInput #searchBox maxlength="256" placeholder="Ingrese el valor a buscar">
+        </mat-form-field>
+    </form>
+    <br>
+    <!--<amb-table [listFields]="listFields" [dataSource]="dataSource"></amb-table>-->
+    <mat-sidenav opened="false" position="end">ss</mat-sidenav>
+</amb-container>

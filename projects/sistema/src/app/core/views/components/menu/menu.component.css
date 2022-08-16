@@ -1,0 +1,29 @@
+mat-nav-list mat-list-item a {
+    transition: 0.3s background-color;
+}
+
+mat-nav-list mat-list-item a,
+mat-nav-list mat-list-item a:link,
+mat-nav-list mat-list-item a:visited,
+mat-nav-list mat-list-item a:active {
+    color: rgba(255, 255, 255, 0.5) !important;
+    font-size: 13px;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+}
+
+
+mat-nav-list mat-list-item a:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.445);
+}
+
+mat-list-item span.mat-list-item-content {
+    padding: 0 !important;
+}
+
+mat-list-item span.title {
+    padding-left: 15px;
+}
