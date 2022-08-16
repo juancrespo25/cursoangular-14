@@ -5,7 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+<<<<<<< HEAD
     "build:prod": "ng build --configuration production",
+=======
+>>>>>>> 317359a1d2917bbce4ee8bcf81074c3b922902ee
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -41,4 +44,8 @@
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.7.2"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 317359a1d2917bbce4ee8bcf81074c3b922902ee
