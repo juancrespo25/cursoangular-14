@@ -1,0 +1,15 @@
+<mat-sidenav-container>
+
+    <mat-sidenav [opened]="isOpened" mode="side" *ngIf="!layoutOptions.hideMenu">
+        <div class="logo">
+            <mat-icon svgIcon="logo"></mat-icon>
+        </div>
+        <amb-menu></amb-menu>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <amb-header (onToggleMenu)="isOpened=!isOpened" *ngIf="!layoutOptions.hideHeader"></amb-header>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

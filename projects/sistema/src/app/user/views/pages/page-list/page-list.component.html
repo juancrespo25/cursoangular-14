@@ -1,0 +1,13 @@
+<amb-title>
+    <button mat-flat-button color="primary" btnAction>
+        <mat-icon>add</mat-icon>
+        Add User
+    </button>
+</amb-title>
+<amb-container>
+    <perfect-scrollbar class="heightMaxPerfectScrollbar">
+        <amb-table [metaColumns]="metaColumns" [dataSource]="dataSource"></amb-table>
+    </perfect-scrollbar>
+    <amb-paginator [length]="quantityRecords" [pageSize]="pageSize" (onChangePage)="getRecordsByPage($event)">
+    </amb-paginator>
+</amb-container>
