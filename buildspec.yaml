@@ -15,8 +15,7 @@ phases:
       commands:
         - aws s3 rm s3://cursoangular11cv2022 --recursive
         - aws s3 sync ./dist/sistema s3://cursoangular11cv2022 --delete
-        - aws cloudfront create-invalidation --distribution-id E1P34RXDWYVSHQ
-        - paths '/*'
+        - aws cloudfront create-invalidation --distribution-id E1P34RXDWYVSHQ --paths '/*'
 
 artifacts:
   name: "AngularBuildOutput"
