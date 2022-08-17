@@ -1,0 +1,25 @@
+version: "0.2"
+phases:
+  install:
+    runtime-version:
+      nodejs: 14
+  pre_build:
+    commands:
+      - echo "installing dependencies"
+      - npm install
+    build:
+      commands:
+        - echo "starting compilation"
+        - npm run build:prod
+    post_build:
+      commands:
+        - aws s3 rm s3://cursoangular11cv2022 --recursive
+        - aws s3 sync ./dist/sistema s3://cursoangular11cv2022 --delete
+        - aws cloudfront create-invalidation --distribution-id E1P34RXDWYVSHQ
+        - paths '/*'
+
+artifacts:
+  name: "AngularBuildOutput"
+  files:
+    - "**/*"
+  base-directory: "dist/sistema"
