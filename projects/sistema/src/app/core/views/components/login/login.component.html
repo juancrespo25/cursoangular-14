@@ -1,7 +1,13 @@
 <form fxLayout="column">
     <h1>Sistemas de Historia</h1>
     <h2>Credenciales</h2>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Ingrese su correo</mat-label>
         <input type="text" matInput>
     </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput>
+    </mat-form-field>
+    <button mat-raised-button type="button" color="primary" (click)="login()">Ingresar</button>
 </form>
