@@ -15,7 +15,9 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 
 
@@ -36,7 +38,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   exports: [TitleComponent, MatIconModule, MatButtonModule,
     ContainerComponent, TableComponent, MatFormFieldModule,
-    MatInputModule, MatSidenavModule, PerfectScrollbarModule, PaginatorComponent
+    MatInputModule, MatSidenavModule, PerfectScrollbarModule, PaginatorComponent, MatDialogModule, MatToolbarModule, FlexLayoutModule
   ],
 
   providers: [

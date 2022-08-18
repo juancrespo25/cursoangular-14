@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MetaColumn } from 'projects/sistema/src/app/shared/interfaces/metacolumn.interface';
+import { FormComponent } from '../../components/form/form.component';
 
 @Component({
   selector: 'amb-page-list',
@@ -72,7 +74,7 @@ export class PageListComponent implements OnInit {
   dataSource: any = [];
   pageSize = 9
 
-  constructor() {
+  constructor(private readonly dialog: MatDialog) {
     this.getRecordsByPage(0);
   }
 
@@ -86,5 +88,9 @@ export class PageListComponent implements OnInit {
         page * this.pageSize + this.pageSize
       ),
     ];
+  }
+
+  showModal() {
+    this.dialog.open(FormComponent, { disableClose: true, panelClass: "form-modal" });
   }
 }
