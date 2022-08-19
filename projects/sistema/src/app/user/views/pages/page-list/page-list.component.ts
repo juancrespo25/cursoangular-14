@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MetaColumn } from 'projects/sistema/src/app/shared/interfaces/metacolumn.interface';
+import { UtilsService } from 'projects/sistema/src/app/shared/service/utils.service';
 import { FormComponent } from '../../components/form/form.component';
 
 @Component({
@@ -74,7 +74,7 @@ export class PageListComponent implements OnInit {
   dataSource: any = [];
   pageSize = 9
 
-  constructor(private readonly dialog: MatDialog) {
+  constructor(private readonly utilsService: UtilsService) {
     this.getRecordsByPage(0);
   }
 
@@ -91,6 +91,6 @@ export class PageListComponent implements OnInit {
   }
 
   showModal() {
-    this.dialog.open(FormComponent, { disableClose: true, panelClass: "form-modal" });
+    this.utilsService.showModalWindow(FormComponent, { disableClose: true, panelClass: "form-modal" });
   }
 }

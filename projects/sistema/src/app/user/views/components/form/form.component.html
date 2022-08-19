@@ -5,17 +5,17 @@
     </button>
 </mat-toolbar>
 <mat-dialog-content>
-    <form fxLayout="column">
+    <form fxLayout="column" [formGroup]="group">
         <mat-form-field appearance="outline">
             <mat-label>Nombre</mat-label>
-            <input type="text" matInput>
+            <input type="text" matInput formControlName="name">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Apellido</mat-label>
-            <input type="text" matInput>
+            <input type="text" matInput formControlName="lastname">
         </mat-form-field>
         <div fxLayout fxLayoutAlign="end" fxLayoutGap="15px">
-            <button mat-raised-button color="primary" type="button">Save</button>
+            <button mat-raised-button color="primary" type="button" (click)="save()">Save</button>
             <button mat-button mat-dialog-close color="primary" type="button">Close </button>
         </div>
     </form>
