@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MetaColumn } from 'projects/sistema/src/app/shared/interfaces/metacolumn.interface';
 import { UtilsService } from 'projects/sistema/src/app/shared/service/utils.service';
 import { FormComponent } from '../../components/form/form.component';
@@ -91,6 +92,12 @@ export class PageListComponent implements OnInit {
   }
 
   showModal() {
-    this.utilsService.showModalWindow(FormComponent, { disableClose: true, panelClass: "form-modal" });
+    const referenece: MatDialogRef<FormComponent> = this.utilsService.showModalWindow(FormComponent, { disableClose: true, panelClass: "form-modal" });
+    referenece.afterClosed().subscribe((response: any) => {
+      if (!response) {
+        return
+      }
+      console.log('response', response);
+    })
   }
 }
