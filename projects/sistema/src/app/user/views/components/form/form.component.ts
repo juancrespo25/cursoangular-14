@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -15,8 +15,11 @@ export class FormComponent implements OnInit {
   constructor(private readonly referenece: MatDialogRef<FormComponent>) {
 
     this.group = new FormGroup({
-      name: new FormControl(),
-      lastname: new FormControl(),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[a-zA-Z]+$/)
+      ]),
+      lastname: new FormControl('', Validators.required),
 
     })
   }
@@ -25,9 +28,13 @@ export class FormComponent implements OnInit {
   }
 
   save() {
-    const values = this.group.value;
-    console.log(values);
-    this.referenece.close();
+
+    if (this.group.valid) {
+      const values = this.group.value;
+      console.log(values);
+      this.referenece.close();
+    }
+
   }
 
 }
