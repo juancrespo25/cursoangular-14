@@ -19,7 +19,7 @@ export class PageListComponent implements OnInit {
     { field: "id", title: "ID" },
     { field: "name", title: "Nombre" },
     { field: "lastname", title: "Apellido" },
-    { field: "cmp", title: "C M P" },
+    { field: "mcmp", title: "C M P" },
   ];
 
   dataOriginal = [
@@ -38,42 +38,14 @@ export class PageListComponent implements OnInit {
     { id: 13, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
     { id: 14, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
     { id: 15, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 16, name: "Lincol", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 17, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 18, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 19, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 20, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 21, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 22, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 23, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 24, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 25, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 26, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 27, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 28, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 29, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 30, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 31, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 32, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 33, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 34, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 35, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 36, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 37, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 38, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 39, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 40, name: "Lucho Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 41, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 42, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-    { id: 43, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 44, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 45, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
+    { id: 16, name: "Lincol", lastname: "Cespedes", mcmp: "333333", marked: false }
   ]
 
   quantityRecords: number = this.dataOriginal.length;
 
   dataSource: any = [];
   pageSize = 9
+  currentPage = 0;
 
   constructor(private readonly utilsService: UtilsService) {
     this.getRecordsByPage(0);
@@ -83,6 +55,7 @@ export class PageListComponent implements OnInit {
   }
 
   getRecordsByPage(page: number) {
+    this.currentPage = page
     this.dataSource = [
       ...this.dataOriginal.slice(
         page * this.pageSize,
@@ -91,13 +64,47 @@ export class PageListComponent implements OnInit {
     ];
   }
 
-  showModal() {
-    const referenece: MatDialogRef<FormComponent> = this.utilsService.showModalWindow(FormComponent, { disableClose: true, panelClass: "form-modal" });
-    referenece.afterClosed().subscribe((response: any) => {
+  showModalWindow(row: any = null) {
+
+
+    const reference: MatDialogRef<FormComponent> =
+      this.utilsService.showModalWindow(FormComponent, {
+        disableClose: true,
+        panelClass: 'form-modal',
+        data: row,
+      });
+
+
+    reference.afterClosed().subscribe((response: any) => {
+
       if (!response) {
-        return
+        return;
       }
-      console.log('response', response);
+
+
+      if (response.id) {
+        const record: any = this.dataOriginal.find(
+          (data) => data.id === response.id
+        );
+        record.name = response.name;
+        record.lastname = response.lastname;
+      } else {
+        response.id = this.dataOriginal.length + 1;
+        this.dataOriginal.push(response);
+      }
+      this.getRecordsByPage(this.currentPage);
+    });
+  }
+
+  delete(row: any) {
+
+    this.utilsService.showConfirm("Really? Do you want to delete it?").subscribe(response => {
+      if (response) {
+        const index = this.dataOriginal.findIndex(r => r.id = row.id);
+        this.dataOriginal.splice(index, 1)
+        this.getRecordsByPage(this.currentPage);
+      }
     })
   }
+
 }

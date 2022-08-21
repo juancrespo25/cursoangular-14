@@ -16,3 +16,15 @@ body {
 .heightMaxPerfectScrollbar {
     height: 90%
 }
+
+.text-align-right {
+    text-align: right;
+}
+
+.highline .rowData button {
+    display: none;
+}
+
+.highline:hover .rowData button {
+    display: inline-block;
+}

@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { UtilsService } from './service/utils.service';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 
 
@@ -32,15 +33,17 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     TitleComponent,
     ContainerComponent,
     TableComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    ConfirmComponent
+
   ],
   imports: [
-    CommonModule, MatIconModule, MatCardModule, MatTableModule, MatPaginatorModule
+    CommonModule, MatIconModule, MatCardModule, MatTableModule, MatPaginatorModule, MatDialogModule, MatButtonModule, FlexLayoutModule
   ],
   exports: [TitleComponent, MatIconModule, MatButtonModule,
     ContainerComponent, TableComponent, MatFormFieldModule,
     MatInputModule, MatSidenavModule, PerfectScrollbarModule, PaginatorComponent, MatDialogModule,
-    MatToolbarModule, FlexLayoutModule
+    MatToolbarModule, FlexLayoutModule, MatTableModule
   ],
 
   providers: [
