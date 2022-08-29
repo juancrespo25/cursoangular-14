@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';;
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -12,17 +12,29 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { Paginator } from './shared/service/paginator.service';
 import { LayoutModule } from './config/injections/layout/modules/layout.module';
 import { layoutConstant } from './config/injections/layout/constants/layout.constant';
+import { UserApplication } from './user/application/user.application';
+import { UserInfrastructure } from './user/infrastructure/user.infrastructure';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInfrastructure } from './core/infrastructure/auth.infrastructure';
+import { AuthApplication } from './core/application/auth.application';
+import { StorageApplication } from './core/application/storage.application';
+import { StorageInfrastructure } from './core/infrastructure/storage.infrastructure';
+import { MedicApplication } from './medic/application/medic.application';
+import { MedicInfraestructure } from './medic/infrastructure/medic.infraestructure';
+import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 
 
+const components = [AppComponent]
+const imports = [BrowserModule, AppRoutingModule, HttpClientModule, CoreModule, BrowserAnimationsModule, MatSidenavModule, MatIconModule, LayoutModule.forRoot(layoutConstant), ReactiveFormsModule]
+const material = [{ provide: MatPaginatorIntl, useClass: Paginator }]
+const applications = [UserApplication, AuthApplication, StorageApplication, MedicApplication]
+const infrastructures = [UserInfrastructure, AuthInfrastructure, StorageInfrastructure, MedicInfraestructure]
+const interceptors = [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }]
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule, AppRoutingModule, HttpClientModule, CoreModule, BrowserAnimationsModule, MatSidenavModule, MatIconModule, LayoutModule.forRoot(layoutConstant)
-  ],
+  declarations: [...components],
+  imports: [...imports],
   bootstrap: [AppComponent],
-  providers: [{ provide: MatPaginatorIntl, useClass: Paginator }]
+  providers: [...material, ...applications, ...infrastructures, ...interceptors]
 })
 export class AppModule {
   constructor(private readonly iconService: IconService) { }

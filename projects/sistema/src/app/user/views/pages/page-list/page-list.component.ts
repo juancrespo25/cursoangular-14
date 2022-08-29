@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MetaColumn } from 'projects/sistema/src/app/shared/interfaces/metacolumn.interface';
 import { UtilsService } from 'projects/sistema/src/app/shared/service/utils.service';
+import { UserApplication } from '../../../application/user.application';
 import { FormComponent } from '../../components/form/form.component';
 
 @Component({
@@ -47,7 +48,8 @@ export class PageListComponent implements OnInit {
   pageSize = 9
   currentPage = 0;
 
-  constructor(private readonly utilsService: UtilsService) {
+  constructor(private readonly utilsService: UtilsService,
+    private readonly userApplication: UserApplication) {
     this.getRecordsByPage(0);
   }
 
@@ -55,6 +57,9 @@ export class PageListComponent implements OnInit {
   }
 
   getRecordsByPage(page: number) {
+
+    const data = this.userApplication.page
+
     this.currentPage = page
     this.dataSource = [
       ...this.dataOriginal.slice(

@@ -1,22 +1,16 @@
-import { Inject } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { User } from "../domain/user";
 import { UserRepository } from "../domain/user.repository";
 import { UserInfrastructure } from "../infrastructure/user.infrastructure";
-import { ClassAbstract } from "./abstract.class";
+import { BaseApplication } from "../../shared/application/base.application";
 
-export class UserApplication extends ClassAbstract<User, UserRepository>{
+@Injectable()
+export class UserApplication extends BaseApplication<User, UserRepository>{
 
     constructor(
         @Inject(UserInfrastructure) private readonly userRepository: UserRepository) {
         super(userRepository);
     }
 
-    override insert(user: User) {
-        alert("Ejecutando")
-        this.userRepository.insert(user)
-    }
 
-    reports() {
-        this.userRepository.reports();
-    }
 }

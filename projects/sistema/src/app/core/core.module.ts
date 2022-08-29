@@ -14,24 +14,25 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './views/components/login/login.component';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
-
+const components = [HeaderComponent, SidebarComponent, MenuComponent, PageLoginComponent, LoginComponent]
+const imports = [CommonModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatIconModule,
+  MatMenuModule,
+  MatListModule,
+  MatFormFieldModule,
+  MatInputModule,
+  RouterModule,
+  FlexLayoutModule, ReactiveFormsModule]
+const exports = [HeaderComponent, SidebarComponent, MenuComponent]
 @NgModule({
-  declarations: [HeaderComponent, SidebarComponent, MenuComponent, PageLoginComponent, LoginComponent],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    RouterModule,
-    FlexLayoutModule
-  ],
+  declarations: [...components],
+  imports: [imports],
+  exports: [exports],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [HeaderComponent, SidebarComponent, MenuComponent],
 })
 export class CoreModule { }

@@ -1,13 +1,14 @@
-<form fxLayout="column">
+<form fxLayout="column" [formGroup]="group">
     <h1>Sistemas de Historia</h1>
     <h2>Credenciales</h2>
     <mat-form-field appearance="outline">
         <mat-label>Ingrese su correo</mat-label>
-        <input type="text" matInput>
+        <input type="text" matInput formControlName="correo">
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
-        <input type="password" matInput>
+        <input type="password" matInput formControlName="password">
     </mat-form-field>
-    <button mat-raised-button type="button" color="primary" (click)="login()">Ingresar</button>
+    <button mat-raised-button type="button" color="primary" (click)="login()"
+        [disabled]="group.invalid">Ingresar</button>
 </form>

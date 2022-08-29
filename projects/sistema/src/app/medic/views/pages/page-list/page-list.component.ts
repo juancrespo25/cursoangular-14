@@ -1,61 +1,29 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { debounceTime, fromEvent } from 'rxjs';
+import { BaseComponent } from 'projects/sistema/src/app/shared/components/base/base-component';
+import { MetaColumn } from 'projects/sistema/src/app/shared/interfaces/metacolumn.interface';
+import { MedicApplication } from '../../../application/medic.application';
+import { Medic } from '../../../domain/medic';
 
 @Component({
   selector: 'amb-page-list',
   templateUrl: './page-list.component.html',
   styleUrls: ['./page-list.component.css']
 })
-export class PageListComponent implements OnInit {
 
-  @ViewChild("searchBox") searchBox!: ElementRef;
 
-  listFields: Array<string> = [
-    "id", "name", "lastname", "mcmp"
+export class PageListComponent extends BaseComponent<Medic, MedicApplication> {
+
+
+  listFields: string[] = ["id", "nombre", "apellido", "cmp"];
+
+  metaColumns: MetaColumn[] = [
+    { field: "id", title: "ID" },
+    { field: "nombre", title: "Nombre" },
+    { field: "apellido", title: "Apellido" },
+    { field: "cmp", title: "CMP" },
   ];
 
-  dataOriginal = [
-    { id: 1, name: "Juan Manuel", lastname: "Cespedes", mcmp: "333333", marked: false },
-    { id: 2, name: "Aldo ", lastname: "Salas", mcmp: "322333", marked: false },
-    { id: 3, name: "Carlos Enrique", lastname: "Mendoza", mcmp: "332343", marked: false },
-  ]
-
-  dataSource: any = [];
-
-  constructor() {
-    this.dataSource = [...this.dataOriginal]
+  constructor(medicApplication: MedicApplication) {
+    super(medicApplication);
   }
-
-  ngOnInit(): void {
-  }
-
-  ngAfterViewInit() {
-    fromEvent(this.searchBox.nativeElement, "keyup")
-      .pipe(
-        debounceTime(500)
-      ).subscribe((data: any) => this.search(data.target.value))
-  }
-
-  toggleID(column: string) {
-
-    const existColumn = this.listFields.indexOf(column);
-    if (existColumn > -1) {
-      this.listFields.splice(existColumn, 1);
-    } else {
-      this.listFields.push(column);
-    }
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    //this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  search(valueToSearch: string) {
-
-    this.dataSource = [
-      ...this.dataOriginal.filter((el) => el.name.toLocaleLowerCase().includes(valueToSearch))
-    ]
-  }
-
 }

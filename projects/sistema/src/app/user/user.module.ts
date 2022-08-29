@@ -8,12 +8,12 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserInfrastructure } from './infrastructure/user.infrastructure';
 
-const declarations = [PageListComponent, FormComponent]
+const components = [PageListComponent, FormComponent]
 const modules = [CommonModule, UserRoutingModule, SharedModule, ReactiveFormsModule]
 const infrastructure = [UserInfrastructure]
 
 @NgModule({
-  declarations: [...declarations],
+  declarations: [...components],
   imports: [...modules],
   providers: [...infrastructure]
 
