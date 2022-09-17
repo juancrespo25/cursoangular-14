@@ -11,11 +11,7 @@ export class UserInfrastructure
     implements UserRepository {
 
     constructor(http: HttpClient) {
-        super(http, "user")
+        super(http, "users")
         this.httpClient = http
     }
-
-
-
-
 }

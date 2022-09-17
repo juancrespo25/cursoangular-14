@@ -1,4 +1,4 @@
-import { MedicProperties } from "./medic";
+import { Medic, MedicProperties } from "./medic";
 
 export class MedicFactory {
     create(nombre: string, apellido: string, segundo_nombre: string, cmp: string, correo: string, dni: string, foto: string) {
@@ -33,5 +33,7 @@ export class MedicFactory {
         if (foto.trim() === '') {
             throw new Error("foto must not be empty");
         }
+
+        return new Medic(MedicProperties)
     }
 }

@@ -36,7 +36,10 @@ export class FormComponent implements OnInit {
   save() {
     if (this.group.valid) {
       const values = this.group.value;
-      this.reference.close(values);
+      const userId = values.id;
+      delete values.id;
+
+      this.reference.close({ id: userId, record: values });
     }
   }
 

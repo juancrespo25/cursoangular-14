@@ -1,8 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseComponent } from 'projects/sistema/src/app/shared/components/base/base-component';
 import { MetaColumn } from 'projects/sistema/src/app/shared/interfaces/metacolumn.interface';
 import { MedicApplication } from '../../../application/medic.application';
 import { Medic } from '../../../domain/medic';
+import { FormComponent } from '../../components/form/form.component';
+import { UtilsService } from 'projects/sistema/src/app/shared/service/utils.service';
 
 @Component({
   selector: 'amb-page-list',
@@ -11,9 +13,7 @@ import { Medic } from '../../../domain/medic';
 })
 
 
-export class PageListComponent extends BaseComponent<Medic, MedicApplication> {
-
-
+export class PageListComponent extends BaseComponent<Medic, MedicApplication, FormComponent> {
   listFields: string[] = ["id", "nombre", "apellido", "cmp"];
 
   metaColumns: MetaColumn[] = [
@@ -23,7 +23,7 @@ export class PageListComponent extends BaseComponent<Medic, MedicApplication> {
     { field: "cmp", title: "CMP" },
   ];
 
-  constructor(medicApplication: MedicApplication) {
-    super(medicApplication);
+  constructor(protected medicApplication: MedicApplication, protected override readonly utilsService: UtilsService) {
+    super(medicApplication, utilsService, FormComponent);
   }
 }

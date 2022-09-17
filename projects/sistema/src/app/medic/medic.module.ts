@@ -5,6 +5,7 @@ import { MedicRoutingModule } from './medic-routing.module';
 import { PageListComponent } from './views/pages/page-list/page-list.component';
 import { FormComponent } from './views/components/form/form.component';
 import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     MedicRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
   ]
 })
 export class MedicModule { }
