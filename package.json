@@ -23,10 +23,13 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@lottiefiles/lottie-player": "^1.5.7",
+    "jwt-decode": "^3.1.2",
     "ngx-perfect-scrollbar": "^10.1.1",
     "ngx-webcam": "^0.4.1",
+    "pdfmake": "^0.2.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

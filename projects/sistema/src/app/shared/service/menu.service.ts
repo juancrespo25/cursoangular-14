@@ -16,6 +16,7 @@ export class MenuService {
 
   constructor() {
     this.menu = [
+      { title: 'Dashboard', url: '/dashboard', icon: 'dashboard' },
       { title: 'User', url: '/user', icon: 'user' },
       { title: 'Medic', url: '/medic', icon: 'medic' },
       { title: 'Driver', url: '/driver', icon: 'diver' },

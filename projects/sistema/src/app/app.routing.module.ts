@@ -16,6 +16,9 @@ const routes: Routes = [
     },
     {
         path: 'history', loadChildren: () => import('./history/history.module').then(module => module.HistoryModule), canLoad: [AuthenticationGuard]
+    },
+    {
+        path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule), canLoad: [AuthenticationGuard]
     }
 ]
 

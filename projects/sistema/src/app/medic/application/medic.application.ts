@@ -5,7 +5,8 @@ import { MedicRepository } from "../domain/medic.repository";
 import { MedicInfraestructure } from "../infrastructure/medic.infraestructure";
 
 @Injectable()
-export class MedicApplication extends BaseApplication<Medic, MedicRepository> {
+export class MedicApplication
+    extends BaseApplication<Medic, MedicRepository> {
 
     constructor(
         @Inject(MedicInfraestructure)

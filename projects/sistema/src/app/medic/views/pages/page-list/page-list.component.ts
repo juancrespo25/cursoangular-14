@@ -25,5 +25,9 @@ export class PageListComponent extends BaseComponent<Medic, MedicApplication, Fo
 
   constructor(protected medicApplication: MedicApplication, protected override readonly utilsService: UtilsService) {
     super(medicApplication, utilsService, FormComponent);
+    this.fileName = "Medics";
+    this.sheetName = "List";
+    this.titleReport = "Medics";
   }
+
 }

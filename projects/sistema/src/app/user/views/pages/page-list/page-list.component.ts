@@ -32,6 +32,9 @@ export class PageListComponent extends BaseComponent<
     protected readonly userApplication: UserApplication
   ) {
     super(userApplication, utilsService, FormComponent);
+    this.fileName = "Users";
+    this.sheetName = "List";
+    this.titleReport = "Users";
   }
 
 }

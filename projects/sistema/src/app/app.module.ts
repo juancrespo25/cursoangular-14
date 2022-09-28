@@ -24,13 +24,15 @@ import { MedicInfraestructure } from './medic/infrastructure/medic.infraestructu
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { DriverApplication } from './driver/application/driver.application';
 import { DriverInfraestructure } from './driver/infrastructure/driver.infrastructure';
+import { RoleApplication } from './roles/application/role.application';
+import { RoleInfrastructure } from './roles/infrastructure/role.infrastructure';
 
 
 const components = [AppComponent]
 const imports = [BrowserModule, AppRoutingModule, HttpClientModule, CoreModule, BrowserAnimationsModule, MatSidenavModule, MatIconModule, LayoutModule.forRoot(layoutConstant), ReactiveFormsModule]
 const material = [{ provide: MatPaginatorIntl, useClass: Paginator }]
-const applications = [UserApplication, AuthApplication, StorageApplication, MedicApplication, DriverApplication]
-const infrastructures = [UserInfrastructure, AuthInfrastructure, StorageInfrastructure, MedicInfraestructure, DriverInfraestructure]
+const applications = [UserApplication, AuthApplication, StorageApplication, MedicApplication, DriverApplication, RoleApplication]
+const infrastructures = [UserInfrastructure, AuthInfrastructure, StorageInfrastructure, MedicInfraestructure, DriverInfraestructure, RoleInfrastructure]
 const interceptors = [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }]
 @NgModule({
   declarations: [...components],

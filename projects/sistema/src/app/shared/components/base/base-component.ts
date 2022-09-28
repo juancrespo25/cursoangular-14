@@ -5,6 +5,10 @@ import { IResultPage } from "../../interface/result-page.interface";
 import { MetaColumn } from "../../interfaces/metacolumn.interface";
 import { UtilsService } from "../../service/utils.service";
 
+enum TypeExport {
+    EXCEL = 'excel',
+    PDF = 'pdf',
+}
 export abstract class BaseComponent<Entity, Application extends IApplication<Entity>, Modal> {
     abstract listFields: string[];
     abstract metaColumns: MetaColumn[];
@@ -12,6 +16,10 @@ export abstract class BaseComponent<Entity, Application extends IApplication<Ent
     quantityRecords: number;
     currentPage: number = 0;
     pageSize: number = environment.pageSize;
+
+    protected fileName: string = 'data';
+    protected sheetName: string = 'Sheet1';
+    protected titleReport: string = 'Titulo Reporte';
 
     private application: Application;
     protected dataSource: any[] = [];
@@ -39,6 +47,7 @@ export abstract class BaseComponent<Entity, Application extends IApplication<Ent
                 if (response) {
                     this.application.delete(row.id).subscribe(() => {
                         this.getRecordsByPage(this.currentPage);
+                        this.utilsService.showNotification('Registro Eliminado');
                     })
                 }
             })
@@ -56,17 +65,30 @@ export abstract class BaseComponent<Entity, Application extends IApplication<Ent
             if (!response) {
                 return;
             }
-            console.log(response.record);
+
             if (response.id) {
                 this.application.update(response.id, response.record).subscribe(() => {
 
                     this.getRecordsByPage(this.currentPage)
+                    this.utilsService.showNotification('Registro Actualizado');
                 });
             } else {
                 this.application.insert(response.record).subscribe(() => {
-                    this.getRecordsByPage(this.currentPage)
+                    this.getRecordsByPage(this.currentPage);
+                    this.utilsService.showNotification('Registro Insertado');
                 })
             }
         })
     }
+
+    protected export(type: string) {
+        this.application.list().subscribe((records: Entity[]) => {
+            if (type === TypeExport.EXCEL) {
+                this.utilsService.exportToExcel(records, this.metaColumns, this.fileName, this.sheetName)
+            } else if (type === TypeExport.PDF) {
+                this.utilsService.exportToPDF(records, this.metaColumns, this.fileName, this.titleReport)
+            }
+        })
+    }
+
 }

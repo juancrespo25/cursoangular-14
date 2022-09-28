@@ -5,7 +5,8 @@ import { ITokens } from "../domain/tokens.interface";
 import { AuthInfrastructure } from "../infrastructure/auth.infrastructure";
 import { StorageApplication } from "./storage.application";
 import { Router } from '@angular/router';
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
+import { UtilsService } from "../../shared/service/utils.service";
 
 @Injectable()
 export class AuthApplication {
@@ -14,12 +15,13 @@ export class AuthApplication {
     constructor(
         private readonly router: Router,
         @Inject(AuthInfrastructure) private readonly authRepository: AuthRepository,
-        private readonly storageApplication: StorageApplication) { }
+        private readonly storageApplication: StorageApplication,
+        private utilService: UtilsService) { }
 
     login(auth: Auth) {
         return this.authRepository.login(auth).subscribe({
             next: this.userAuthenticated.bind(this),
-            error: console.log,
+            error: this.showMessageError.bind(this),
         })
     }
 
@@ -28,6 +30,10 @@ export class AuthApplication {
         this.storageApplication.setField('refreshToken', response.refreshToken)
         this.userLogged = true;
         this.router.navigate(['/driver'])
+    }
+
+    private showMessageError(error: any) {
+        this.utilService.showNotification("Credenciales invalidas");
     }
 
     get isUserLogged(): boolean {

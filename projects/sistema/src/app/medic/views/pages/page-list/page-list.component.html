@@ -20,6 +20,10 @@
             </ng-container>
         </amb-table>
     </perfect-scrollbar>
-    <amb-paginator [length]="quantityRecords" [pageSize]="pageSize" (onChangePage)="getRecordsByPage($event)">
-    </amb-paginator>
+    <div fxLayout fxLayoutAlign="space-between center">
+        <amb-keypad (onExport)="export($event)"></amb-keypad>
+        <amb-paginator [length]="quantityRecords" [pageSize]="pageSize" (onChangePage)="getRecordsByPage($event)">
+        </amb-paginator>
+    </div>
+
 </amb-container>

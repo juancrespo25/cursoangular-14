@@ -15,6 +15,9 @@ import { LoginComponent } from './views/components/login/login.component';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UtilsService } from '../shared/service/utils.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 const components = [HeaderComponent, SidebarComponent, MenuComponent, PageLoginComponent, LoginComponent]
@@ -27,12 +30,16 @@ const imports = [CommonModule,
   MatFormFieldModule,
   MatInputModule,
   RouterModule,
-  FlexLayoutModule, ReactiveFormsModule]
+  FlexLayoutModule,
+  ReactiveFormsModule,
+  MatDialogModule,
+  MatSnackBarModule]
 const exports = [HeaderComponent, SidebarComponent, MenuComponent]
 @NgModule({
   declarations: [...components],
   imports: [imports],
   exports: [exports],
+  providers: [UtilsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CoreModule { }

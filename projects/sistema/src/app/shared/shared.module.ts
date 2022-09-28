@@ -25,6 +25,8 @@ import { PhotoComponent } from './components/photo/photo.component';
 import { UploadDirective } from './directives/upload.directive';
 import { WebcamModule } from 'ngx-webcam';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { KeypadComponent } from './components/keypad/keypad.component';
 
 
 
@@ -42,15 +44,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ConfirmComponent,
     PhotoComponent,
     UploadDirective,
+    KeypadComponent,
 
   ],
   imports: [
-    CommonModule, MatIconModule, MatCardModule, MatTableModule, MatPaginatorModule, MatDialogModule, MatButtonModule, FlexLayoutModule, WebcamModule, MatSlideToggleModule
+    CommonModule, MatIconModule, MatCardModule, MatTableModule, MatPaginatorModule, MatDialogModule, MatButtonModule, FlexLayoutModule, WebcamModule, MatSlideToggleModule, MatSnackBarModule
   ],
   exports: [TitleComponent, MatIconModule, MatButtonModule,
     ContainerComponent, TableComponent, MatFormFieldModule,
     MatInputModule, MatSidenavModule, PerfectScrollbarModule, PaginatorComponent, MatDialogModule,
-    MatToolbarModule, FlexLayoutModule, MatTableModule, PhotoComponent
+    MatToolbarModule, FlexLayoutModule, MatTableModule, PhotoComponent, KeypadComponent
   ],
 
   providers: [
