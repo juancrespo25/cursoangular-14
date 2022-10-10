@@ -27,6 +27,7 @@ import { WebcamModule } from 'ngx-webcam';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { KeypadComponent } from './components/keypad/keypad.component';
+import { RolesAllowedDirective } from './directives/roles-allowed.directive';
 
 
 
@@ -45,6 +46,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PhotoComponent,
     UploadDirective,
     KeypadComponent,
+    RolesAllowedDirective,
 
   ],
   imports: [
@@ -53,7 +55,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   exports: [TitleComponent, MatIconModule, MatButtonModule,
     ContainerComponent, TableComponent, MatFormFieldModule,
     MatInputModule, MatSidenavModule, PerfectScrollbarModule, PaginatorComponent, MatDialogModule,
-    MatToolbarModule, FlexLayoutModule, MatTableModule, PhotoComponent, KeypadComponent
+    MatToolbarModule, FlexLayoutModule, MatTableModule, PhotoComponent, KeypadComponent, RolesAllowedDirective
   ],
 
   providers: [

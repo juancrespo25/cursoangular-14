@@ -29,7 +29,7 @@ export class AuthApplication {
         this.storageApplication.setField('accessToken', response.accessToken)
         this.storageApplication.setField('refreshToken', response.refreshToken)
         this.userLogged = true;
-        this.router.navigate(['/driver'])
+        this.router.navigate(['/dashboard'])
     }
 
     private showMessageError(error: any) {

@@ -17,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MedicRoutingModule,
     SharedModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MedicModule { }

@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.highline {
+    cursor: pointer;
+}
+
+.highlineMarked {
+    background-color: rgba(177, 178, 152, 0.707);
+}
+
+.highline:hover {
+    background-color: rgba(93, 251, 1, 0.333);
+}
